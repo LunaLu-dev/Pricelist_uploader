@@ -4,9 +4,9 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
     const formData = new FormData();
     const fileInput = document.getElementById('fileInput');
     const file = fileInput.files[0];
-    var name = document.getElementById("category").value + '-' + document.getElementById("subcategory").value + '-' + document.getElementById("brand").value;
+    let name = document.getElementById("category").value + '-' + document.getElementById("subcategory").value + '-' + document.getElementById("brand").value;
 
-    const renamedFile = new File([file], 'balls.pdf', {
+    const renamedFile = new File([file], name, {
         type: file.type,
         lastModified: file.lastModified,
     });
