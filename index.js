@@ -14,7 +14,7 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
     formData.append('file', renamedFile);
 
     try {
-        const response = await fetch('http://localhost:3000/upload', {
+        const response = await fetch('http://192.168.1.69:7001/upload', {
             method: 'POST',
             body: formData
         });
