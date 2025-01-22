@@ -1,4 +1,9 @@
-﻿async function GetCategories(){
+﻿document.addEventListener('DOMContentLoaded', function() {
+    // Call GetCategories when the page loads
+    GetCategories();
+});
+
+async function GetCategories(){
     fetch('http://192.168.1.69:7003?type=read')
         .then(response => response.json())
         .then(data => {
@@ -17,17 +22,18 @@
 async function GetSubCategories(){
     url = 'http://192.168.1.69:7003?type=read&category=' + document.getElementById("category").value;
     fetch(url)
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('subcategory').innerHTML = '<option value="" disabled selected>Select Subcategory</option>';
-        data.forEach((item) => {
-            var subCategory = document.createElement('option');
-            subCategory.value = item.code_name;
-            subCategory.innerText = item.public_name
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('subcategory').innerHTML = '<option value="" disabled selected>Select Subcategory</option>';
+            data.forEach((item) => {
+                var subCategory = document.createElement('option');
+                subCategory.value = item.code_name;
+                subCategory.innerText = item.public_name
 
-            document.getElementById('subcategory').appendChild(subCategory);
+                document.getElementById('subcategory').appendChild(subCategory);
+            })
         })
-    })
+        .catch(error => console.error('Error:', error));
 }
 
 async function GetBrands(){
@@ -44,5 +50,5 @@ async function GetBrands(){
                 document.getElementById('brand').appendChild(subCategory);
             })
         })
+        .catch(error => console.error('Error:', error));
 }
-

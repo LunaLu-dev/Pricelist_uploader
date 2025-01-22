@@ -1,33 +1,50 @@
-document.getElementById('uploadForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
+document.addEventListener('DOMContentLoaded', function() {
+    const uploadForm = document.getElementById('uploadForm');
+    if (!uploadForm) {
+        console.error('Form not found');
+        return;
+    }
 
-    const formData = new FormData();
-    const fileInput = document.getElementById('fileInput');
-    const file = fileInput.files[0];
-    let name = document.getElementById("category").value + '-' + document.getElementById("subcategory").value + '-' + document.getElementById("brand").value;
+    uploadForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        console.log("Form submitted");
 
-    const renamedFile = new File([file], name, {
-        type: file.type,
-        lastModified: file.lastModified,
-    });
+        const formData = new FormData();
+        const fileInput = document.getElementById('fileInput');
+        const file = fileInput.files[0];
+        let name = document.getElementById("category").value + '-' +
+            document.getElementById("subcategory").value + '-' +
+            document.getElementById("brand").value + ".pdf";
 
-    formData.append('file', renamedFile);
+        console.log("Selected file:", file);
+        console.log("New filename:", name);
 
-    try {
-        const response = await fetch('http://192.168.1.69:7001/upload', {
-            method: 'POST',
-            body: formData
+        const renamedFile = new File([file], name, {
+            type: file.type,
+            lastModified: file.lastModified,
         });
 
-        const result = await response.json();
-        console.log('Upload successful:', result);
-        alert('File uploaded successfully!');
-    } catch (error) {
-        console.error('Upload failed:', error);
-        alert('Upload failed!');
-    }
-});
+        formData.append('file', renamedFile);
 
+        try {
+            const response = await fetch('http://192.168.1.69:7001/upload', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            console.log('Upload successful:', result);
+            alert('File uploaded successfully!');
+        } catch (error) {
+            console.error('Upload failed:', error);
+            alert('Upload failed!');
+        }
+    });
+});
 
 function UpdateFileName() {
     const fileInput = document.getElementById('fileInput');
