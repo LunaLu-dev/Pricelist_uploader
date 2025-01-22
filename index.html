@@ -4,16 +4,61 @@
         <title>HiFi Consult Price List Upload</title>
         <script src="index.js"></script>
         <script src="database.js"></script>
+        <style>
+
+            @import url('https://fonts.googleapis.com/css2?family=Gruppo&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+            * {
+                font-family: 'Roboto', sans-serif;
+                font-size: 20px;
+            }
+            select{
+                width: 200px;
+                height: 50px;
+                margin: 10px;
+                border: 2px solid #000;
+            }
+            button{
+                width: 200px;
+                height: 50px;
+                margin: 10px;
+                border: 2px solid black;
+                background-color: #fff;
+            }
+            .custom-file-upload {
+                display: inline-block;
+                border: 2px solid #000;
+                cursor: pointer;
+                background-color: #fff;
+                width: 200px;
+                height: 50px;
+                margin: 10px;
+                text-align: center;
+                line-height: 50px;
+            }
+
+            .file-input {
+                display: none;
+            }
+
+            .filename {
+                margin-left: 12px;
+                color: #000;
+            }
+        </style>
     </head>
     <body onload="GetCategories()">
         <form id="uploadForm" enctype="multipart/form-data">
-            <input type="file" id="fileInput" name="file" required><br>
+            <input type="file" id="fileInput" class="file-input" required onchange="UpdateFileName()">
+            <label for="fileInput" class="custom-file-upload">
+                Select File
+            </label>
+            <span class="filename" id="fileName">TEST</span><br>
             <label for="category"></label>
             <select id="category" name="categoty" required onchange="GetSubCategories()">
                 <option value="" disabled selected>Select Category</option>
             </select><br>
             <label for="subcategory"></label>
-            <select id="subcategory" name="subcategory" required>
+            <select id="subcategory" name="subcategory" required onchange="GetBrands()">
                 <option value="" disabled selected>Select Subcategory</option>
             </select><br>
             <label for="brand"></label>
@@ -22,7 +67,6 @@
             </select><br>
             <button type="submit">Upload File</button>
         </form>
-        <button type="button" id="uploadButton">TEST BUTTON</button>
         <p id="result"></p>
     </body>
 </html>

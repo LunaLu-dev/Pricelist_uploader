@@ -26,3 +26,17 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
         alert('Upload failed!');
     }
 });
+
+
+function UpdateFileName() {
+    const fileInput = document.getElementById('fileInput');
+    const fileName = document.getElementById('fileName');
+
+    console.log("CHANGE");
+    const file = fileInput.files[0];
+    if (file) {
+        console.log(file);
+        console.log(file.name);
+        fileName.innerText = file.name;
+    }
+}
