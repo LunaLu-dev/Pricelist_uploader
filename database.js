@@ -15,7 +15,7 @@ async function GetCategories(){
         .catch(error => console.error('Error:', error));
 }
 
-async function GetSubCategories(category){
+async function GetSubCategories(){
     url = 'http://127.0.0.1:7069?type=read&category=' + document.getElementById("category").value;
     fetch(url)
     .then(response => response.json())
@@ -31,7 +31,7 @@ async function GetSubCategories(category){
     })
 }
 
-async function GetBrands(category){
+async function GetBrands(){
     url = 'http://127.0.0.1:7069?type=read&category=' + document.getElementById("category").value + '&subcategory=' + document.getElementById("subcategory").value;
     fetch(url)
         .then(response => response.json())
