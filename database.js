@@ -1,6 +1,5 @@
-﻿
-async function GetCategories(){
-    fetch('http://127.0.0.1:7069?type=read')
+﻿async function GetCategories(){
+    fetch('http://192.168.1.69:7003?type=read')
         .then(response => response.json())
         .then(data => {
             document.getElementById('category').innerHTML = '<option value="" disabled selected>Select Category</option>';
@@ -16,7 +15,7 @@ async function GetCategories(){
 }
 
 async function GetSubCategories(){
-    url = 'http://127.0.0.1:7069?type=read&category=' + document.getElementById("category").value;
+    url = 'http://192.168.1.69:7003?type=read&category=' + document.getElementById("category").value;
     fetch(url)
     .then(response => response.json())
     .then(data => {
@@ -32,7 +31,7 @@ async function GetSubCategories(){
 }
 
 async function GetBrands(){
-    url = 'http://127.0.0.1:7069?type=read&category=' + document.getElementById("category").value + '&subcategory=' + document.getElementById("subcategory").value;
+    url = 'http://192.168.1.69:7003?type=read&category=' + document.getElementById("category").value + '&subcategory=' + document.getElementById("subcategory").value;
     fetch(url)
         .then(response => response.json())
         .then(data => {
