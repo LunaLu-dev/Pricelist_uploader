@@ -67,15 +67,12 @@
                 else if(document.getElementById(field + "_add_input").value && element.value.length > 1){
                     if (field === "category") {
                         AddCategory(document.getElementById(field + "_add_input").value);
-                        document.getElementById("category").value = document.getElementById(field + "_add_input").value;
                     }
                     else if(field === "subcategory") {
                         AddSubCategory(document.getElementById(field + "_add_input").value);
-                        document.getElementById("subcategory").value = document.getElementById(field + "_add_input").value;
                     }
                     else if(field === "brand") {
                         AddBrand(document.getElementById(field + "_add_input").value);
-                        document.getElementById("brand").value = document.getElementById(field + "_add_input").value;
                     }
                     document.getElementById(field + "_add_input").value = "";
                     document.getElementById(field + "_add_input").style.display = "none";
