@@ -11,7 +11,7 @@ async function GetCategories(){
         .then(data => {
             document.getElementById('category').innerHTML = '<option value="" disabled selected>Select Category</option>';
             data.forEach((item) => {
-                var category = document.createElement('option');
+                const category = document.createElement('option');
                 category.value = item.code_name;
                 category.innerText = item.public_name;
 
@@ -28,7 +28,7 @@ async function GetSubCategories(){
         .then(data => {
             document.getElementById('subcategory').innerHTML = '<option value="" disabled selected>Select Subcategory</option>';
             data.forEach((item) => {
-                var subCategory = document.createElement('option');
+                const subCategory = document.createElement('option');
                 subCategory.value = item.code_name;
                 subCategory.innerText = item.public_name
 
@@ -45,7 +45,7 @@ async function GetBrands(){
         .then(data => {
             document.getElementById('brand').innerHTML = '<option value="" disabled selected>Select Brand</option>';
             data.forEach((item) => {
-                var subCategory = document.createElement('option');
+                const subCategory = document.createElement('option');
                 subCategory.value = item.code_name;
                 subCategory.innerText = item.public_name
 
@@ -61,6 +61,7 @@ async function AddCategory(name){
     fetch(url)
         .then( () => {
             GetCategories();
+            document.getElementById("category").value = name;
         })
         .catch(error => console.error('Error:', error));
 }
@@ -70,6 +71,7 @@ async function AddSubCategory(name){
     fetch(url)
         .then( () => {
             GetSubCategories();
+            document.getElementById("subcategory").value = name;
         })
         .catch(error => console.error('Error:', error));
 }
@@ -79,6 +81,7 @@ async function AddBrand(name){
     fetch(url)
         .then( () => {
             GetBrands();
+            document.getElementById("brand").value = name;
         })
         .catch(error => console.error('Error:', error));
 }
