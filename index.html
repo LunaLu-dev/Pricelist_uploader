@@ -44,7 +44,47 @@
                 margin-left: 12px;
                 color: #000;
             }
+
+            input[type=text]{
+                width: 200px;
+                height: 50px;
+                border: 2px solid #000;
+                display:none;
+            }
+            .add_btn{
+                width: 50px;
+                height: 50px;
+            }
         </style>
+        <script>
+
+            function button_add_click(field) {
+                const element = document.getElementById(field + "_add_input");
+
+                if(!document.getElementById(field + "_add_input").value) {
+                    document.getElementById(field + "_add_input").style.display = "inline-block";
+                }
+                else if(document.getElementById(field + "_add_input").value && element.value.length > 1){
+                    if (field === "category") {
+                        AddCategory(document.getElementById(field + "_add_input").value);
+                        document.getElementById("category").value = document.getElementById(field + "_add_input").value;
+                    }
+                    else if(field === "subcategory") {
+                        AddSubCategory(document.getElementById(field + "_add_input").value);
+                        document.getElementById("subcategory").value = document.getElementById(field + "_add_input").value;
+                    }
+                    else if(field === "brand") {
+                        AddBrand(document.getElementById(field + "_add_input").value);
+                        document.getElementById("brand").value = document.getElementById(field + "_add_input").value;
+                    }
+                    document.getElementById(field + "_add_input").value = "";
+                    document.getElementById(field + "_add_input").style.display = "none";
+                }
+
+            }
+
+
+        </script>
     </head>
     <body onload="GetCategories()">
         <form id="uploadForm" enctype="multipart/form-data">
@@ -56,15 +96,15 @@
             <label for="category"></label>
             <select id="category" name="category" required onchange="GetSubCategories()">
                 <option value="" disabled selected>Select Category</option>
-            </select><br>
+            </select><label for="category_add_input"></label><input type="text" id="category_add_input"><button type="button" id="category_add_btn" class="add_btn" onclick="button_add_click('category')">+</button><br>
             <label for="subcategory"></label>
             <select id="subcategory" name="subcategory" required onchange="GetBrands()">
                 <option value="" disabled selected>Select Subcategory</option>
-            </select><br>
+            </select><label for="subcategory_add_input"></label><input type="text" id="subcategory_add_input"><button type="button" id="subcategory_add_btn" class="add_btn" onclick="button_add_click('subcategory')">+</button><br>
             <label for="brand"></label>
             <select id="brand" name="brand" required>
                 <option value="" disabled selected>Select Brand</option>
-            </select><br>
+            </select><label for="brand_add_input"></label><input type="text" id="brand_add_input"><button type="button" id="brand_add_btn" class="add_btn" onclick="button_add_click('brand')">+</button><br>
             <button type="submit">Upload File</button>
         </form>
         <p id="result"></p>

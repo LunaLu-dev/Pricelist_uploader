@@ -3,8 +3,10 @@
     GetCategories();
 });
 
+
+//Read Data
 async function GetCategories(){
-    fetch('http://192.168.1.69:7003?type=read')
+    fetch('https://db-api-hificonsult.lunalu.xyz/?type=read')
         .then(response => response.json())
         .then(data => {
             document.getElementById('category').innerHTML = '<option value="" disabled selected>Select Category</option>';
@@ -20,7 +22,7 @@ async function GetCategories(){
 }
 
 async function GetSubCategories(){
-    url = 'http://192.168.1.69:7003?type=read&category=' + document.getElementById("category").value;
+    const url = 'https://db-api-hificonsult.lunalu.xyz/?type=read&category=' + document.getElementById("category").value;
     fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -37,7 +39,7 @@ async function GetSubCategories(){
 }
 
 async function GetBrands(){
-    url = 'http://192.168.1.69:7003?type=read&category=' + document.getElementById("category").value + '&subcategory=' + document.getElementById("subcategory").value;
+    const url = 'https://db-api-hificonsult.lunalu.xyz/?type=read&category=' + document.getElementById("category").value + '&subcategory=' + document.getElementById("subcategory").value;
     fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -52,3 +54,33 @@ async function GetBrands(){
         })
         .catch(error => console.error('Error:', error));
 }
+
+//Write
+async function AddCategory(name){
+    const url = 'https://db-api-hificonsult.lunalu.xyz/?type=write&name=' + name + '&ref=category';
+    fetch(url)
+        .then( () => {
+            GetCategories();
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+async function AddSubCategory(name){
+    const url = 'https://db-api-hificonsult.lunalu.xyz/?type=write&category=' + document.getElementById("category").value + '&name=' + name + '&ref=subcategory';
+    fetch(url)
+        .then( () => {
+            GetSubCategories();
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+async function AddBrand(name){
+    const url = 'https://db-api-hificonsult.lunalu.xyz/?type=write&category=' + document.getElementById("category").value + '&subcategory=' + document.getElementById("subcategory").value + '&name=' + name + '&ref=brand';
+    fetch(url)
+        .then( () => {
+            GetBrands();
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+
