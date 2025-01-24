@@ -76,7 +76,7 @@ async function AddSubCategory(name){
 }*/
 
 async function AddBrand(name){
-    const url = 'https://db-api-hificonsult.lunalu.xyz/?type=write';
+    const url = 'https://db-api-hificonsult.lunalu.xyz/?type=write&name='+name;
     fetch(url)
         .then( () => {
             GetBrands();
