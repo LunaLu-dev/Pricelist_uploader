@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const result = await response.json();
             console.log('Upload successful:', result);
             alert('File uploaded successfully!');
+            document.getElementById('result').value = 'https://price-hificonsult.lunalu.xyz/price/'+document.getElementById('category')+'-'+document.getElementById('subcategory').value+'-' + document.getElementById('brand').value + '.pdf';
         } catch (error) {
             console.error('Upload failed:', error);
             alert('Upload failed!');
