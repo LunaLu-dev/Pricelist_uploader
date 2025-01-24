@@ -1,8 +1,7 @@
-﻿document.addEventListener('DOMContentLoaded', function() {
+﻿/*document.addEventListener('DOMContentLoaded', function() {
     // Call GetCategories when the page loads
     GetCategories();
 });
-
 
 //Read Data
 async function GetCategories(){
@@ -36,10 +35,10 @@ async function GetSubCategories(){
             })
         })
         .catch(error => console.error('Error:', error));
-}
+}*/
 
 async function GetBrands(){
-    const url = 'https://db-api-hificonsult.lunalu.xyz/?type=read&category=' + document.getElementById("category").value + '&subcategory=' + document.getElementById("subcategory").value;
+    const url = 'https://db-api-hificonsult.lunalu.xyz/?type=read';
     fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -56,7 +55,7 @@ async function GetBrands(){
 }
 
 //Write
-async function AddCategory(name){
+/*async function AddCategory(name){
     const url = 'https://db-api-hificonsult.lunalu.xyz/?type=write&name=' + name + '&ref=category';
     fetch(url)
         .then( () => {
@@ -74,10 +73,10 @@ async function AddSubCategory(name){
             document.getElementById("subcategory").value = name;
         })
         .catch(error => console.error('Error:', error));
-}
+}*/
 
 async function AddBrand(name){
-    const url = 'https://db-api-hificonsult.lunalu.xyz/?type=write&category=' + document.getElementById("category").value + '&subcategory=' + document.getElementById("subcategory").value + '&name=' + name + '&ref=brand';
+    const url = 'https://db-api-hificonsult.lunalu.xyz/?type=write';
     fetch(url)
         .then( () => {
             GetBrands();
