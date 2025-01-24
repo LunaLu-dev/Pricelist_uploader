@@ -12,9 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = new FormData();
         const fileInput = document.getElementById('fileInput');
         const file = fileInput.files[0];
-        let name = document.getElementById("category").value + '-' +
-            document.getElementById("subcategory").value + '-' +
-            document.getElementById("brand").value + ".pdf";
+        let name = document.getElementById("brand").value + ".pdf";
 
         console.log("Selected file:", file);
         console.log("New filename:", name);
